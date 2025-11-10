@@ -6,7 +6,6 @@ import subprocess
 
 # Fichier de sortie généré par metadata_listener.py
 INPUT_FILE = '/tmp/current_track.json'
-sortie_volume = ""
 
 def forcer_le_volume_zero():
     subprocess.run(
@@ -89,8 +88,6 @@ def display_info(track_data):
     
 def main():
     last_content_hash = None
-    
-    global sortie_volume
 
     # Vérifie si le script est lancé sans le service en arrière-plan
     if not os.path.exists(INPUT_FILE):
