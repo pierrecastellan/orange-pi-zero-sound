@@ -1,0 +1,23 @@
+[Unit]
+Description=A2DP Playback (Connexion automatique à la tablette)
+After=bluealsa.service syslog.service bluetooth_dbus_agent.service
+Requires=bluealsa.service
+Wants=bluetooth_dbus_agent.service
+
+[Service]
+Type=simple
+User=root
+# Attendre un peu que BlueZ et BlueAlsa soient prêts.
+ExecStartPre=/bin/sleep 15
+# CORRECTION : Utilisation de l'outil bluealsa-aplay dans /usr/bin
+# MAC de la tablette: 9C:39:28:2E:FF:F9
+ExecStart=/usr/bin/bluealsa-aplay --profile-a2dp 9C:39:28:2E:FF:F9
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=A2DP-Playback-Final
+
+[Install]
+WantedBy=multi-user.target
+

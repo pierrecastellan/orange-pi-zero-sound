@@ -1,0 +1,16 @@
+[Unit]
+Description=BlueALSA Agent
+After=bluetooth.service
+Wants=bluetooth.service
+
+[Service]
+Type=simple
+# CORRECTION : Utilisation du nom du démon compilé (bluealsad) et du chemin trouvé (/usr/bin)
+ExecStart=/usr/bin/bluealsad -p a2dp-source -p a2dp-sink
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=BlueALSA-Agent
+
+[Install]
+WantedBy=bluetooth.service
+
