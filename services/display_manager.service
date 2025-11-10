@@ -1,0 +1,24 @@
+[Unit]
+Description=Gestionnaire d'affichage des métadonnées Bluetooth
+Requires=metadata_listener.service
+After=metadata_listener.service
+
+[Service]
+# Type for simple background service
+Type=simple
+# ATTENTION: Utiliser le chemin de votre interpréteur Python 3
+ExecStart=/usr/bin/python3 /usr/local/bin/display_manager.py
+
+# IMPORTANT : Le script utilise print() et clear_screen(). 
+# Ce service est conçu pour fonctionner en arrière-plan sans terminal.
+# Si vous voulez l'afficher dans une fenêtre TTY/terminal, VOUS DEVEZ 
+# l'exécuter manuellement (ex: './display_manager.py') ou via une session utilisateur.
+
+Restart=always
+RestartSec=5
+# Output to journal (sera souvent silencieux car le script efface l'écran)
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
