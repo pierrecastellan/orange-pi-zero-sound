@@ -18,29 +18,32 @@ Lacompilation a révélé que les binaires sont installés sous les noms blueals
 
 #### . Compilation Manuelle de BlueAlsa
 Aller dans le répertoire temporaire
-cd /tmp
-Cloner le dépôt officiel BlueAlsa
-git clone [https://github.com/Arkq/bluez-alsa.git](https://github.com/Arkq/bluez-alsa.g)
-cd bluez-alsa
-autoreconf --install
-./configure --enable-a2dp-sink
-make
-sudo make install
+- cd /tmp
+- Cloner le dépôt officiel BlueAlsa
+-- git clone [https://github.com/Arkq/bluez-alsa.git](https://github.com/Arkq/bluez-alsa.g)
+- cd bluez-alsa
+- autoreconf --install
+- ./configure --enable-a2dp-sink
+- make
+- sudo make install
 
 ### Installation
-copier les fichiers avec sudo 
+Copier les fichiers avec sudo 
 -- les services 
-/etc/asound.conf vers /etc/
-/etc/systemd/system/bluealsa.service
-/etc/systemd/system/a2dp-playback.service
+--- /etc/asound.conf vers /etc/
+--- /etc/systemd/system/bluealsa.service
+---/etc/systemd/system/a2dp-playback.service
 
 -- les fichiers executables
-/usr/local/bin/metadata_listener.py
-/usr/local/bin/display_manager.py
+--- /usr/local/bin/metadata_listener.py
+--- /usr/local/bin/display_manager.py
 
+Valider le demarage des servies au prochian reboot
+--- sudo systemctl enable bluealsa.service
+--- sudo systemctl enable a2dp-playback.service
+--- sudo systemctl enable a2dp-playback.service
 
-sudo systemctl enable bluealsa.service
-sudo systemctl enable a2dp-playback.service
-sudo systemctl enable a2dp-playback.service
+Rebooter la carte
+-- sudo reboot
 
 
